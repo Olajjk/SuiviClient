@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon App{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f8f7f4;
+            --border: #e8e5e0;
+            --text: #1a1814;
+            --muted: #8a8680;
+            --accent: #2d6a4f;
+            --accent-light: #d8f3e3;
+            --radius: 12px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav a {
+            font-size: 0.875rem;
+            color: var(--muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--text); }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .card-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.5px;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            background: var(--surface);
+            color: var(--text);
+            transition: border-color 0.2s, background 0.2s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            background: #fff;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .form-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover { text-decoration: underline; }
+
+        /* Messages Django */
+        .messages {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .messages li {
+            padding: 0.65rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .messages li.error {
+            background: #fde8e8;
+            color: #c0392b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--border);
+            border-top: 1px solid var(--border);
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <a href="/" class="logo">SuiviClient</a>
+    <nav>
+        <a href="{% url 'login' %}">Connexion</a>
+        <a href="{% url 'register' %}">Inscription</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    &copy; 2025 MonApp
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>
